@@ -23,11 +23,12 @@ public class Solution {
         File input = new File(path.toUri());
         BufferedReader bufferedReader = new BufferedReader(new FileReader(input));
 
+        Set<Character> firstHalfCharacters = new HashSet<Character>();
+        Set<Character> charactersInFirstAndSecondHalf = new HashSet<Character>();
+
         String line;
         String firstHalf;
         String secondHalf;
-        Set<Character> firstHalfCharacters = new HashSet<Character>();
-        Set<Character> charactersInFirstAndSecondHalf = new HashSet<Character>();
         int prioritySum = 0;
         int halfIndex;
         while ((line = bufferedReader.readLine()) != null) {
