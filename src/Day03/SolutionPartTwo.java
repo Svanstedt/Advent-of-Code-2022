@@ -23,42 +23,32 @@ public class SolutionPartTwo {
         File input = new File(path.toUri());
         BufferedReader bufferedReader = new BufferedReader(new FileReader(input));
 
-        String line1;
-        String line2;
-        String line3;
-        Set<Character> charactersInFirstLine = new HashSet<Character>();
-        Set<Character> charactersInFirstAndSecondLine = new HashSet<Character>();
-        Set<Character> charactersInAllLines = new HashSet<Character>();
+        Map<Integer, Set<Character>> characterMap = new HashMap<>();
+        Set<Character> characterSet;
 
+        int numOfLines = 8;
         int prioritySum = 0;
-        while ((line1 = bufferedReader.readLine()) != null
-        && (line2 = bufferedReader.readLine()) != null
-        && (line3 = bufferedReader.readLine()) != null)
-        {
-            for (int i = 0; i < line1.length(); i++) {
-                charactersInFirstLine.add(line1.charAt(i));
-            }
-
-            for (int j = 0; j < line2.length(); j++) {
-                if (charactersInFirstLine.contains(line2.charAt(j))) {
-                    charactersInFirstAndSecondLine.add(line2.charAt(j));
+        String line;
+        while (bufferedReader.ready()) {
+            for (int i = 0; i < numOfLines; i++) {
+                line = bufferedReader.readLine();
+                characterSet = new HashSet<>();
+                for (int j = 0; j < line.length(); j++) {
+                    characterSet.add(line.charAt(j));
                 }
+                characterMap.put(i, characterSet);
             }
-            charactersInFirstLine.clear();
 
-            for (int k = 0; k < line3.length(); k++) {
-                if (charactersInFirstAndSecondLine.contains(line3.charAt(k))) {
-                    charactersInAllLines.add(line3.charAt(k));
-                }
+            Set<Character> commonCharacters = characterMap.get(0);
+            for (int i = 1; i < numOfLines; i++) {
+                commonCharacters.retainAll(characterMap.get(i));
             }
-            charactersInFirstAndSecondLine.clear();
 
-            for (Character commonCharacter : charactersInAllLines) {
-                prioritySum += Alphabet.getNum(commonCharacter);
+            for (Character character : commonCharacters) {
+                prioritySum += Alphabet.getNum(character);
             }
-            charactersInAllLines.clear();
-
         }
+
 
         long finish = System.nanoTime();
         System.out.println((finish-start)/Math.pow(10,9) + " seconds");
