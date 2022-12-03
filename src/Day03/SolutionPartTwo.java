@@ -26,7 +26,7 @@ public class SolutionPartTwo {
         Map<Integer, Set<Character>> characterMap = new HashMap<>();
         Set<Character> characterSet;
 
-        int numOfLines = 8;
+        int numOfLines = 3;
         int prioritySum = 0;
         String line;
         while (bufferedReader.ready()) {
