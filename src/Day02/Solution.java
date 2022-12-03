@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class solution {
+public class Solution {
     public static void main(String[] args) throws IOException, URISyntaxException {
         long start = System.nanoTime();
         boolean test = false;

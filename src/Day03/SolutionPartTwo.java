@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class solutionPartTwo {
+public class SolutionPartTwo {
     public static void main(String[] args) throws IOException, URISyntaxException {
         long start = System.nanoTime();
         boolean test = false;
@@ -23,13 +23,14 @@ public class solutionPartTwo {
         File input = new File(path.toUri());
         BufferedReader bufferedReader = new BufferedReader(new FileReader(input));
 
-        String line1, line2, line3;
+        String line1;
+        String line2;
+        String line3;
         Set<Character> charactersInFirstLine = new HashSet<Character>();
         Set<Character> charactersInFirstAndSecondLine = new HashSet<Character>();
         Set<Character> charactersInAllLines = new HashSet<Character>();
 
         int prioritySum = 0;
-        int halfIndex;
         while ((line1 = bufferedReader.readLine()) != null
         && (line2 = bufferedReader.readLine()) != null
         && (line3 = bufferedReader.readLine()) != null)

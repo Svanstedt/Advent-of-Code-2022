@@ -4,7 +4,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class solution {
+public class Solution {
     public static void main(String[] args) throws IOException, URISyntaxException {
         long start = System.nanoTime();
         boolean test = false;
