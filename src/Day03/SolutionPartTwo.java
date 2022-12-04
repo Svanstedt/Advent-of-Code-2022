@@ -12,7 +12,7 @@ import java.util.*;
 public class SolutionPartTwo {
     public static void main(String[] args) throws IOException, URISyntaxException {
         long start = System.nanoTime();
-        boolean test = false;
+        boolean test = true;
         Path path;
         if (test) {
             path = Paths.get("src/Day03/testInput.txt");
@@ -26,7 +26,7 @@ public class SolutionPartTwo {
         Map<Integer, Set<Character>> characterMap = new HashMap<>();
         Set<Character> characterSet;
 
-        int numOfLines = 8;
+        int numOfLines = 3;
         int prioritySum = 0;
         String line;
         while (bufferedReader.ready()) {
