@@ -12,7 +12,7 @@ import java.util.*;
 public class Solution {
     public static void main(String[] args) throws IOException, URISyntaxException {
         long start = System.nanoTime();
-        boolean test = true;
+        boolean test = false;
         Path path;
         if (test) {
             path = Paths.get("src/Day05/testInput.txt");
@@ -24,24 +24,63 @@ public class Solution {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(input));
 
         String line;
-        List<String> stacks = new ArrayList<>();
-        Map<Integer, Stack> crateStacks = new HashMap<>();
+        List<String> rows = new ArrayList<>();
+        Map<Integer, Stack> crateStacks = new TreeMap<>();
 
         while ((line = bufferedReader.readLine()) != null && !line.contains("1")) {
-            stacks.add(line);
+            rows.add(line);
         }
 
-        for (int i = 1; i < stacks.get(stacks.size()-1).length(); i += 4) {
+        for (int i = 1; i < rows.get(rows.size()-1).length(); i += 4) {
             Stack<Character> stack = new Stack<>();
-            for (int k = stacks.size() - 1; k >= 0; k--) {
-                if ((stacks.get(k).charAt(i) + "").matches("[A-Z]")) {
-                    stack.add(stacks.get(k).charAt(i));
+            for (int k = rows.size() - 1; k >= 0; k--) {
+                if (rows.get(k).length()-1 >= i && (rows.get(k).charAt(i) + "").matches("[A-Z]")) {
+                    stack.add(rows.get(k).charAt(i));
                 } else {
                     break;
                 }
-
             }
             crateStacks.put(i, stack);
+        }
+        bufferedReader.readLine();
+
+        while ((line = bufferedReader.readLine()) != null) {
+            // create int array with numbers from line
+            line = line.replaceAll("move", "");
+            line = line.replaceAll("from", ",");
+            line = line.replaceAll("to", ",");
+            line = line.trim();
+            line = line.replaceAll("\\s", "");
+            // calling replaceAll() method and split() method on
+            // string
+            String[] string = line.replaceAll("\\[", "")
+                    .replaceAll("]", "")
+                    .split(",");
+
+            // declaring an array with the size of string
+            int[] arr = new int[string.length];
+
+            // parsing the String argument as a signed decimal
+            // integer object and storing that integer into the
+            // array
+            for (int i = 0; i < string.length; i++) {
+                arr[i] = Integer.valueOf(string[i]);
+            }
+
+            // declaring an array with the size of string
+
+            int numberOfMoves = arr[0];
+            int crateToMove = (arr[1]*4) - 3;
+            int crateDestination = (arr[2]*4) - 3;
+            for (int i = 0; i < numberOfMoves; i++) {
+                crateStacks.get(crateDestination).add(crateStacks.get(crateToMove).pop());
+            }
+        }
+
+        String topCrates = "";
+
+        for (Stack stack : crateStacks.values()) {
+            topCrates += stack.pop();
         }
 
 
@@ -51,6 +90,7 @@ public class Solution {
 
         long finish = System.nanoTime();
         System.out.println((finish-start)/Math.pow(10,9) + " seconds");
+        System.out.println(topCrates);
     }
 
 }
