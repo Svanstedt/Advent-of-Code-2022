@@ -27,15 +27,11 @@ public class Solution {
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             String[] array = line.split("[,-]");
-            if (Integer.parseInt(array[0]) <= Integer.parseInt(array[2]) && Integer.parseInt(array[1]) >= Integer.parseInt(array[3])) {
-                fullyContainedPairs += 1;
-            } else if (Integer.parseInt(array[0]) >= Integer.parseInt(array[2]) && Integer.parseInt(array[1]) <= Integer.parseInt(array[3])) {
+            if (Integer.parseInt(array[0]) <= Integer.parseInt(array[2]) && Integer.parseInt(array[1]) >= Integer.parseInt(array[3])
+            || Integer.parseInt(array[0]) >= Integer.parseInt(array[2]) && Integer.parseInt(array[1]) <= Integer.parseInt(array[3])) {
                 fullyContainedPairs += 1;
             }
         }
-
-
-
 
         long finish = System.nanoTime();
         System.out.println((finish-start)/Math.pow(10,9) + " seconds");
