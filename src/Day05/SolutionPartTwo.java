@@ -39,7 +39,6 @@ public class SolutionPartTwo {
                 } else {
                     break;
                 }
-
             }
             crateStacks.put(i, stack);
         }
@@ -73,15 +72,15 @@ public class SolutionPartTwo {
             }
         }
 
-        StringBuilder result = new StringBuilder();
+        StringBuilder topCrates = new StringBuilder();
 
         for (Stack stack : crateStacks.values()) {
-            result.append(stack.pop());
+            topCrates.append(stack.pop());
         }
 
         long finish = System.nanoTime();
         System.out.println((finish-start)/Math.pow(10,9) + " seconds");
-        System.out.println(result);
+        System.out.println(topCrates);
     }
 
 }
